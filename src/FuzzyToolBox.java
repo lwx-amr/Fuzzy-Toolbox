@@ -1,8 +1,5 @@
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -17,21 +14,6 @@ public class FuzzyToolBox {
 	public FuzzyToolBox () {
 		this.filename = "input.txt";
 		fuzzification = new Fuzzification();
-	}
-	
-	// Function to add new fuzzy set ( member function )
-	public void addFuzzySet() {
-		
-	}
-	
-	// Function to fuzzy crisp input
-	public void fuzzifyCrisp() {
-		
-	}
-	
-	//  Function to process given rules and combine their outputs
-	public void inferenceRules() {
-		
 	}
 	
 	// Read inputs
