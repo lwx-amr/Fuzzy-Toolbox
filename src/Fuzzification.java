@@ -1,16 +1,15 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Fuzzification {
 
 	// Variables
-	HashMap<String, Integer> crisps;
 	HashMap<String, MemberShip> inputs;
 	MemberShip output;
 	
 	// Constructor
 	public Fuzzification () {
 		this.inputs = new HashMap<String, MemberShip>();
-		this.crisps = new HashMap<>();
 	}
 	
 	// Initialize all membership functions
@@ -23,9 +22,9 @@ public class Fuzzification {
 		this.output = output;
 	}
 	
-	// Add new crisp value
-	public void addNewCrisp(String fun, int value) {
-		crisps.put(fun, value);
+	// Get fuzzy values for some member function
+	public ArrayList<FuzzyValue> getFuzzyValues(String name,  int value){
+		return inputs.get(name).getFuzzyValues(value);
 	}
 	
 	public void print() {

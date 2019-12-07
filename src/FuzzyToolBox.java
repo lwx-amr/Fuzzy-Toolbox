@@ -1,19 +1,28 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class FuzzyToolBox {
 
 	// Variables
-	String filename;
-	Fuzzification fuzzification;
+	private String filename;
+	private Fuzzification fuzzification;
 	private Scanner scanner;
+	private HashMap<String, Integer> crisps;
+	
 	
 	// Constructor
 	public FuzzyToolBox () {
 		this.filename = "input.txt";
 		fuzzification = new Fuzzification();
+		this.crisps = new HashMap<>();
+	}
+	
+	// Add new crisp value
+	public void addNewCrisp(String fun, int value) {
+		crisps.put(fun, value);
 	}
 	
 	// Read inputs
@@ -43,8 +52,8 @@ public class FuzzyToolBox {
 				mFun.sets.add(newSet);
 			}
 			if(i!=inputsNum) {
+				addNewCrisp(ling, value);
 				fuzzification.addNewMemberFun(mFun);
-				fuzzification.addNewCrisp(ling, value);
 			}else {
 				fuzzification.addOutput(mFun);
 			}
@@ -59,7 +68,13 @@ public class FuzzyToolBox {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		fuzzification.print();
+		ArrayList<FuzzyValue> results;
+		for (String name: crisps.keySet()){
+			results = fuzzification.getFuzzyValues(name, crisps.get(name));
+			for(int i=0; i< results.size(); i++) {
+				System.out.println(results.get(i).value + results.get(i).name);
+			}
+		} 
 	}
 	
 	public static void main (String args[]) {
